@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行业现状 - 科茂智电</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* 页面专属样式补充 */
+        .modern-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .core-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2b5876;
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            color: #64748b;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .metric-trend {
+            color: #10b981;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .tech-evolution {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin: 4rem 0;
+        }
+
+        .tech-stage {
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .stage-marker {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            border: 3px solid white;
+        }
+
+        .competitive-landscape {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .matrix-grid {
+            height: 400px;
+            background: 
+                linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+                linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+            background-size: 10% 10%;
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .trend-chart {
+            margin: 4rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-container {
+            height: 400px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+            
+            .modern-container {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <img src="../images/kemao_logo.png" alt="科茂智电logo" width="160">
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../index.html#industry" class="nav-link">← 返回行业与市场</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="modern-container">
+            <div class="modern-header">
+                <h2 class="gradient-text">行业数字化进程</h2>
+                <p class="subtitle">2024年行业关键指标分析</p>
+            </div>
+
+            <!-- 核心数据模块 -->
+            <div class="core-metrics">
+                <div class="metric-card">
+                    <div class="metric-value">158亿</div>
+                    <div class="metric-label">市场规模</div>
+                    <div class="metric-trend">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"/>
+                        </svg>
+                        15% 同比增长
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">89%</div>
+                    <div class="metric-label">AI应用率</div>
+                    <div class="metric-trend">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"/>
+                        </svg>
+                        32% 技术渗透
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2,450+</div>
+                    <div class="metric-label">行业企业数量</div>
+                    <div class="metric-trend">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#10b981">
+                            <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"/>
+                        </svg>
+                        18% 年增长
+                    </div>
+                </div>
+            </div>
+
+            <!-- 增长趋势图表 -->
+            <div class="trend-chart">
+                <h3>行业增长趋势（2019-2024）</h3>
+                <div class="chart-container">
+                    <canvas id="industryTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 技术演进模块 -->
+            <div class="tech-evolution">
+                <div class="tech-stage">
+                    <div class="stage-marker"></div>
+                    <h3>智能感知阶段</h3>
+                    <ul class="tech-list">
+                        <li>分布式光纤传感网络</li>
+                        <li>5G边缘计算终端</li>
+                        <li>无线自组网通信协议</li>
+                        <li>多源数据融合采集</li>
+                    </ul>
+                </div>
+                <div class="tech-stage">
+                    <div class="stage-marker"></div>
+                    <h3>智能分析阶段</h3>
+                    <ul class="tech-list">
+                        <li>深度学习故障诊断</li>
+                        <li>时序数据异常检测</li>
+                        <li>设备健康度评估模型</li>
+                        <li>知识图谱辅助决策</li>
+                    </ul>
+                </div>
+                <div class="tech-stage">
+                    <div class="stage-marker"></div>
+                    <h3>自主决策阶段</h3>
+                    <ul class="tech-list">
+                        <li>数字孪生仿真系统</li>
+                        <li>自主运维机器人</li>
+                        <li>动态资源调度算法</li>
+                        <li>智能告警抑制系统</li>
+                    </ul>
+                </div>
+            </div>
+
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 行业趋势图表初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('industryTrendChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: '市场规模 (亿元)',
+                        data: [68, 75, 88, 105, 132, 158],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }, {
+                        label: '解决方案数量 (套)',
+                        data: [1200, 1450, 1820, 2150, 2580, 3020],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: 'rgba(0,0,0,0.85)',
+                            bodyFont: { size: 14 },
+                            titleFont: { size: 16 }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            title: {
+                                display: true,
+                                text: '单位：亿元/套'
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            title: {
+                                display: true,
+                                text: '年度发展'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

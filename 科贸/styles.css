@@ -1,0 +1,1060 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 1.0s, color 1.0s;
+}
+
+
+/* 粒子背景样式 */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* 导航栏样式 */
+header {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #0e64e7;
+    text-decoration: underline;
+}
+.nav-link.active {
+    color: #2b3be7; /* 高亮颜色 */
+}
+
+/* 暗黑模式变量 */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --accent-color: #4CAF50;
+}
+
+.dark-theme {
+    --bg-color: #333333;
+    --text-color: #ffffff;
+}
+
+/* 首页内容样式 */
+.home {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+
+.slider {
+    display: flex;
+    width: 300%;
+    height: 100vh; /* 视口高度 */
+    animation: slide 15s infinite;
+    margin-top: 0; /* 确保没有上边距 */
+    margin-bottom: 0; /* 确保没有下边距 */
+}
+
+
+.slider img {
+    width: 33.33%;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    margin-top: 0; /* 确保没有上边距 */
+}
+
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    33% { transform: translateX(-33.33%); }
+    66% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0); }
+}
+
+.company-intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+
+
+/* styles.css 添加以下内容 */
+/* 产品详情页专用样式 */
+.product-detail {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-detail h2 {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #87cefa;
+    text-align: center;
+}
+
+.product-detail img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-detail img:hover {
+    transform: scale(1.02);
+}
+
+.product-detail h3 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #87cefa;
+}
+
+.product-detail ul, 
+.product-detail ol {
+    padding-left: 2rem;
+    margin: 1.5rem 0;
+}
+
+.product-detail li {
+    margin: 0.8rem 0;
+    line-height: 1.6;
+    padding: 0.8rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.product-detail li:hover {
+    background: #e9f5ff;
+}
+
+
+
+/* 技术参数表格样式 */
+.technical-specs {
+    width: 100%;
+    margin: 2rem 0;
+    border-collapse: collapse;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+}
+
+.technical-specs th,
+.technical-specs td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.technical-specs th {
+    background: #87cefa;
+    color: white;
+    font-weight: 500;
+}
+
+.technical-specs tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+/* 应用场景特殊样式 */
+.application-scenarios {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.application-card {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 软件功能模块样式 */
+.module-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.module-card {
+    position: relative;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.module-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        rgba(135, 206, 250, 0.1) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(135, 206, 250, 0.1) 100%);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .product-detail {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .product-detail img {
+        height: 250px;
+    }
+    
+    .technical-specs {
+        font-size: 0.9rem;
+    }
+}
+/* 表格样式 */
+.parameter-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 表头和单元格样式 */
+.parameter-table th,
+.parameter-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center; /* 设置文本居中 */
+}
+
+/* 表头样式 */
+.parameter-table th {
+    background-color: #f2f2f2;
+}    
+/* 在styles.css中添加以下内容 */
+.analysis-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.analysis-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid #3b82f6;
+}
+
+.analysis-header h2 {
+    color: #1e293b;
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.analysis-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+/* 数据块样式 */
+.data-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+    border-left: 4px solid #3b82f6;
+    transition: transform 0.3s ease;
+}
+
+.data-card:hover {
+    transform: translateY(-3px);
+}
+
+.data-card h3 {
+    color: #1e293b;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.data-card h3::before {
+    content: "•";
+    color: #3b82f6;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+/* 时间线样式（用于政策分析） */
+.timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+.timeline-item::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 28px;
+    bottom: -2rem;
+    width: 2px;
+    background: #cbd5e1;
+}
+
+/* 市场细分网格布局 */
+.market-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.market-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border-top: 4px solid #3b82f6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.market-card strong {
+    color: #3b82f6;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* 数据可视化元素 */
+.data-visual {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.data-visual::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 1rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+.stat-number::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: #3b82f6;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .analysis-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .data-card {
+        padding: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+.analysis-container {
+    padding: 20px;
+}
+
+.analysis-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.data-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.timeline-item {
+    width: 300px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item h3 {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.timeline-item p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .data-card {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.product-detail {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .product-detail {
+        width: 90%;
+    }
+}
+/* ====== 现代极简主义风格 ====== */
+.modern-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+}
+
+.modern-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #2b5876, #4e4376);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* 市场战略地图 */
+.strategy-map {
+    display: grid;
+    grid-template: 
+        "power city" 1fr
+        "industry energy" 1fr / 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.map-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.map-card:hover {
+    transform: translateY(-5px);
+}
+
+.map-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.dot-list li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin: 0.8rem 0;
+}
+
+.dot-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 8px;
+    height: 8px;
+    background: #4e4376;
+    border-radius: 50%;
+}
+
+/* 定位模块 */
+.positioning-wrapper {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.positioning-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.positioning-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: #4e4376;
+}
+
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    background: #4e4376;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-weight: 600;
+}
+
+/* 行业现状页样式 */
+.core-metrics {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 4rem 0;
+}
+
+.metric-card {
+    text-align: center;
+    padding: 2rem;
+    flex: 1;
+    max-width: 300px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+}
+
+.metric-value {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: #2b5876;
+    line-height: 1.2;
+}
+
+.metric-label {
+    color: #6b7280;
+    margin: 1rem 0;
+}
+
+.metric-trend {
+    color: #10b981;
+    font-weight: 500;
+}
+
+.tech-evolution {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin: 4rem 0;
+}
+
+.tech-stage {
+    position: relative;
+    padding-top: 3rem;
+}
+
+.stage-marker {
+    width: 24px;
+    height: 24px;
+    background: #4e4376;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.stage-marker::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 80px;
+    background: #e5e7eb;
+}
+
+.tech-list li {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.competitive-landscape {
+    margin: 4rem 0;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.matrix-grid {
+    width: 100%;
+    height: 400px;
+    background: 
+        linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+        linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+    background-size: 10% 10%;
+    position: relative;
+}
+
+.matrix-item {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    background: #4e4376;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.matrix-position {
+    width: 12px;
+    height: 12px;
+    background: #4e4376;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.axis-label {
+    position: absolute;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.x-axis { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.y-axis { 
+    left: 10px; top: 50%; 
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+/* 图表容器样式 */
+.trend-chart {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        height: 300px;
+    }
+    
+    .trend-chart {
+        padding: 1rem;
+    }
+}
+
+/* styles.css */
+/* ====== 全局样式 ====== */
+:root {
+  --primary-blue: #2b5876;
+  --accent-teal: #10b981;
+  --dark-gray: #1e293b;
+  --medium-gray: #64748b;
+  --light-gray: #f8fafc;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+}
+
+body {
+  font-family: 'Helvetica Neue', system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-gray);
+  background-color: var(--light-gray);
+}
+
+/* ====== 头部样式 ====== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo img {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
+}
+
+.main-nav .nav-link {
+  color: var(--medium-gray);
+  padding: 0.8rem 1.2rem;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.main-nav .nav-link:hover {
+  background: var(--light-gray);
+  color: var(--primary-blue);
+}
+
+/* ====== 核心指标模块 ====== */
+.core-metrics {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: 3rem 0;
+}
+
+.metric-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-value {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.metric-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 2rem;
+  color: var(--accent-teal);
+}
+
+.metric-trend svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ====== 趋势图表模块 ====== */
+.trend-chart {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin: 4rem 0;
+  padding: 2rem;
+}
+
+.chart-title {
+  font-size: 1.5rem;
+  color: var(--primary-blue);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--accent-teal);
+}
+
+/* ====== 技术演进模块 ====== */
+.tech-evolution {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin: 4rem 0;
+}
+
+.tech-stage {
+  position: relative;
+  padding: 2rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.tech-stage::before {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  left: -1px;
+  bottom: 2rem;
+  width: 4px;
+  background: linear-gradient(to bottom, 
+    var(--accent-teal) 0%, 
+    var(--primary-blue) 100%);
+}
+
+.tech-stage h3 {
+  font-size: 1.4rem;
+  color: var(--primary-blue);
+  margin-bottom: 1.5rem;
+}
+
+.tech-list {
+  list-style: none;
+  padding-left: 1.5rem;
+}
+
+.tech-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.tech-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-teal);
+}
+
+/* ====== 竞争矩阵模块 ====== */
+.competitive-landscape {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+  margin: 4rem 0;
+}
+
+.matrix-grid {
+  position: relative;
+  height: 500px;
+  background:
+    linear-gradient(to right, #e5e7eb 1px, transparent 1px),
+    linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
+  background-size: 10% 10%;
+  margin: 2rem 0;
+}
+
+.company-point {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.company-point:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.company-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.company-point:hover .company-tooltip {
+  opacity: 1;
+}
+
+/* ====== 响应式设计 ====== */
+@media (max-width: 768px) {
+  .core-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-evolution {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-value {
+    font-size: 2.2rem;
+  }
+
+  .matrix-grid {
+    height: 300px;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* 其他工具类和动画 */
+.hidden { display: none !important; }
+.text-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.center { display: flex; justify-content: center; align-items: center; }
+.card-shadow { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+html { scroll-behavior: smooth; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animated { animation: fadeIn 0.8s ease-out; }
+.loader { border: 4px solid #f3f3f3; border-top: 4px solid #4CAF50; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.back-to-top { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; opacity: 0; transition: opacity 0.3s; }
+.back-to-top:hover { background-color: #45a049; }
+.back-to-top.active { opacity: 1; }
+input.error, textarea.error { border-color: #dc3545; box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); }

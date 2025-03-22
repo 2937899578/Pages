@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科茂智电 - 电力设备故障检测专家</title>
+</head>
+<style>
+/* 新增粒子画布样式 */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* 原有其他样式保持不变 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo-container {
+            text-align: left;
+            align-items: center;
+            padding-top: 20px;
+            padding-left: 60px;
+        }
+        .logo {
+            font-size: 36px;
+            color: #3f51b5;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly; /* 确保项目之间的空间均匀分布 */
+            margin-left: 500px; /* 向左移动500px，实现整体向右的效果 */
+            position: relative;
+            top: -20px; /* 根据需要调整上移的距离 */
+        }
+
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            position: relative;
+            top: -40px; /* 根据需要调整上移的距离 */
+        }
+        .contact-item:last-child {
+            margin-right: 0;
+            position: relative;
+            top: -40px; /* 根据需要调整上移的距离 */
+        }
+        .icon {
+            font-size: 24px;
+            color: #3f51b5;
+            margin-right: 10px;
+            position: relative;
+            top: -40px; /* 根据需要调整上移的距离 */
+        }
+        .text {
+            font-size: 14px;
+            color: #333;
+            position: relative;
+            top: -40px; /* 根据需要调整上移的距离 */
+        }
+
+
+        /*导航栏*/
+        .nav {
+            background-color: #3f51b5;
+            display: flex;
+            margin-top: -80px; /* 根据需要调整上移的距离 */
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            margin-bottom: 0; /* 确保导航栏没有下边距 */
+        }
+        .nav a {
+            color: #ffffff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #ddd;
+        }
+        .container {
+            padding: 20px;
+            margin-top: 80px; /* 确保内容不被固定在顶部的导航栏遮挡 */
+        }
+        .content {
+            margin-bottom: 50px; /* 确保内容底部有空间 */
+        }
+       
+
+        
+        /* 暗黑模式变量 */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #4CAF50;
+        }
+
+        .dark-theme {
+            --bg-color: #333333;
+            --text-color: #ffffff;
+        }
+        
+        /*首页样式*/
+        .home {
+            position: relative;
+            margin-top: auto;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+
+        .slider {
+            display: flex;
+            width: 300%;
+            animation: slide 15s infinite;
+            
+        }
+
+
+        .slider img {
+            width: 33.33%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+        }
+
+        .company-intro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(121, 119, 119, 0.5);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .company-intro p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .company-intro button {
+            background-color: #fff;
+            color: #3f51b5;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .company-intro button:hover {
+            background-color: #ddd;
+        }
+
+        
+
+        /*产品中心样式*/
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4f4;
+        }
+        
+        .header {
+            font-size: 1em;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 750px;
+        }
+        .product-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* 添加gap for flex items */
+            margin: 20px 0;
+        }
+        .product {
+            width: 45%;
+            max-width: 300px; /* 设置最大宽度 */
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer; /* 添加鼠标指针样式 */
+        }
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .product h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+        }
+        .product p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+        .product a {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #0a0909;
+            background-color: #ffffff;
+            text-decoration: none;
+            border: 1px solid #000; /* 添加1px的黑色边框 */
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: color 0.3s; /* 平滑过渡效果 */
+        }
+        .product a:hover {
+            color: #007bff; /* 鼠标悬停时按钮文本颜色 */
+        }
+
+       /* 行业与市场分析样式 */
+        .industry-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .industry-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .view-more {
+            margin-top: 20px;
+        }
+
+        .view-more a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        /* 公司介绍样式 */
+        .company-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        
+       /*支持与服务*/
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4f4;
+        }
+        #service {
+            padding: 50px 0;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .service-item {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            vertical-align: top;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .service-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 1em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 联系我们样式 */
+        #contact form {
+            width: 50%;
+            margin: 0 auto;;
+        }
+        
+        #contact form input,
+        #contact form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #contact form input:focus,
+        #contact form textarea:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+
+        #contact form button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #contact form button:hover {
+            background-color: #45a049;
+            transform: scale(1.02);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .social-media {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .social-media a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-media img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .icon-text {
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+            nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .product-item,
+            .industry-item,
+            .service-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+            #contact form {
+                width: 90%;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .product-item,
+            .industry-item,
+            .service-item {
+                width: 45%;
+            }
+        }
+
+        /* 其他工具类和动画 */
+        .hidden { display: none !important; }
+        .text-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .center { display: flex; justify-content: center; align-items: center; }
+        .card-shadow { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        html { scroll-behavior: smooth; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animated { animation: fadeIn 0.8s ease-out; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #4CAF50; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; opacity: 0; transition: opacity 0.3s; }
+        .back-to-top:hover { background-color: #45a049; }
+        .back-to-top.active { opacity: 1; }
+        input.error, textarea.error { border-color: #dc3545; box-shadow: 0 0 5px rgba(220, 53, 69, 0.3); }
+    </style>
+<body>
+    </div>
+    <!-- 新增粒子容器 -->
+    <div id="particles-js"></div>
+
+    
+
+    <div class="logo-container">
+        <div class="logo">ELECTRIC</div>
+        <div class="tagline">值得信赖的电力系统价值伙伴</div>
+    </div>
+    <div class="contact-info">
+        <div class="contact-item">
+            <span class="icon">📍</span>
+            <div class="text">
+                <p>陕西省灞桥区</p>
+                <p>狄寨街道水安路28号</p>
+            </div>
+        </div>
+        <div class="contact-item">
+            <span class="icon">📞</span>
+            <div class="text">
+                <p>0000000000@qq.com</p>
+                <p>email@email.mt</p>
+            </div>
+        </div>
+        <div class="contact-item">
+            <span class="icon">🗓️</span>
+            <div class="text">
+                <p>9:00-18:00</p>
+                <p>周一至周五</p>
+            </div>
+        </div>
+    </div>
+    <div class="nav">
+        <a href="#home">首页</a>
+        <a href="#product">产品中心</a>
+        <a href="#industry">行业与市场</a>
+        <a href="#company">公司介绍</a>
+        <a href="#news">新闻资讯</a>
+        <a href="#service">服务与支持</a>
+        <a href="#contact">联系我们</a>
+    </div>
+
+
+    <!-- 首页内容 -->
+    <section class="home">
+        <div class="slider">
+            <img src="C:\Users\29378\Pictures\Screenshots\屏幕截图 2025-03-21 205404.png" alt="电力设备监测">
+            <img src="C:\Users\29378\Pictures\Screenshots\屏幕截图 2025-03-21 205459.png"alt="故障检测技术" >
+            <img src="C:\Users\29378\Pictures\Screenshots\屏幕截图 2025-03-21 205404.png" alt="智能解决方案">
+        </div>
+        <div class="company-intro">
+            <h1>科茂智电 - 电力设备故障检测技术的创新引领者</h1>
+            <p>西安科茂智电科技有限公司专注于电气设备及其运维故障检测系统领域，致力于为客户提供卓越的检测系统和优质服务。</p>
+            <button>了解更多</button>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+        <div class="header">
+            <h1>产品中心</h1>
+        </div>
+        <div class="product-section">
+            <div class="product" onclick="toggleActive(this)">
+                <div class="product-text">
+                    <img src="images/transformer.jpg" alt="变压器监测设备">
+                    <h3>变压器监测系统</h3>
+                    <p>实时监测变压器状态，精准检测故障隐患，具备数据采集与处理精度高、在线预警及时、维护管理便捷等优势。</p>
+                    <a href="products/transformer.html">了解详情</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleActive(this)">
+                <div class="product-text">
+                    <img src="images/huganqi.jpg" alt="互感器监测设备">
+                    <h3>互感器监测系统</h3>
+                    <p>有效监测互感器电气特性和运行环境，拥有绝对保护、故障迅速定位、高精度测温等技术优势。</p>
+                    <a href="products/huganqi.html">了解详情</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleActive(this)">
+                <div class="product-text">
+                    <img src="images/software.jpg" alt="电气设备运维故障检测软件">
+                    <h3>电气设备运维故障检测软件</h3>
+                    <p>实现设备故障实时定位、检测与分析，提供全面解决方案，助力高效运维管理。</p>
+                    <a href="products/software.html">了解详情</a>
+                </div>
+            </div>
+            <div class="product" onclick="toggleActive(this)">
+                <div class="product-text">
+                    <img src="images/new_product.jpg" alt="新产品">
+                    <h3>新产品</h3>
+                    <p>介绍新产品的特点和优势，提供更多信息。</p>
+                    <a href="products/new_product.html">了解详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleActive(element) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(prod => prod.classList.remove('active'));
+
+            element.classList.add('active');
+        }
+    </script>
+    
+    <!--行业与市场-->
+    <section id="industry" >
+        <h2>行业与市场</h2>
+        <div class="industry-item visible">
+            <h3>政策分析</h3>
+            <p>国家多项政策支持电力物联网和电力设备监测系统发展，为行业创造良好政策环境。</p>
+            <a href="industry/analysis.html">查看政策详情</a>
+        </div>
+        <div class="industry-item">
+            <h3>行业现状</h3>
+            <p>电力设备监测系统市场规模持续扩大，技术应用不断拓展，行业发展前景广阔。</p>
+            <a href="industry/status.html">了解行业动态</a>
+        </div>
+        <div class="industry-item">
+            <h3>市场细分与定位</h3>
+            <p>精准定位目标市场，涵盖电力、工业、城市建设等领域，满足不同客户需求。</p>
+            <a href="industry/segmentation.html">查看市场细分</a>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+             var items = document.querySelectorAll('.industry-item');
+             var scrollThreshold = 0.5; // 50% of the item is visible
+
+             function reveal() {
+                 for (var i = 0; i < items.length; i++) {
+                     var windowHeight = window.innerHeight;
+                     var elementTop = items[i].getBoundingClientRect().top;
+                     var elementVisible = 150; // 150px of the item is visible
+
+                     if (elementTop < windowHeight - elementVisible) {
+                         items[i].classList.add('visible');
+                     } else {
+                         items[i].classList.remove('visible');
+                      }
+                  }
+             }
+
+             window.addEventListener('scroll', reveal);
+             reveal();
+         });
+    </script>
+    
+
+     <!-- 公司介绍 -->
+     <section id="company">
+        <h2>公司介绍</h2>
+        <div class="company-info">
+            <h3>公司概述</h3>
+            <p>秉持“服务至上、质量为本、科技创新”宗旨，专注于电气设备运维故障检测领域。</p>
+        </div>
+        <div class="company-info">
+            <h3>公司环境</h3>
+            <p>依托西安的区位、人才和政策优势，为公司发展提供有力支持。</p>
+        </div>
+        <div class="company-info">
+            <h3>公司管理体系</h3>
+            <p>完善的组织结构和科学的人力资源管理，保障公司高效运作。</p>
+        </div>
+    </section>
+
+
+    <!--支持与服务-->
+    <section id="service">
+        <h2>服务支持</h2>
+        <div class="service-item visible">
+            <img src="images/technical_support.jpg" alt="技术支持">
+            <h3>技术支持</h3>
+            <p>专业技术团队提供全方位技术支持，确保产品稳定运行。</p>
+        </div>
+        <div class="service-item">
+            <img src="images/after_sales.jpg" alt="售后服务">
+            <h3>售后服务</h3>
+            <p>及时响应客户需求，提供优质售后服务，解决客户后顾之忧。</p>
+        </div>
+        <div class="service-item">
+            <img src="images/custom_service.jpg" alt="定制服务">
+            <h3>定制服务</h3>
+            <p>根据客户需求提供个性化定制方案，满足多样化需求。</p>
+        </div>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+             var items = document.querySelectorAll('.service-item');
+             var scrollThreshold = 0.5; // 50% of the item is visible
+
+             function reveal() {
+                 for (var i = 0; i < items.length; i++) {
+                     var windowHeight = window.innerHeight;
+                     var elementTop = items[i].getBoundingClientRect().top;
+                     var elementVisible = 150; // 150px of the item is visible
+
+                     if (elementTop < windowHeight - elementVisible) {
+                         items[i].classList.add('visible');
+                     } else {
+                         items[i].classList.remove('visible');
+                      }
+                  }
+             }
+
+             window.addEventListener('scroll', reveal);
+             reveal();
+         });
+    </script>
+
+
+
+
+    <!-- 联系我们 -->
+    <section id="contact">
+        <h2>联系我们</h2>
+        <form>
+            <input type="text" name="name" placeholder="姓名">
+            <input type="email" name="email" placeholder="邮箱">
+            <textarea name="message" placeholder="留言内容"></textarea>
+            <button type="submit">提交</button>
+        </form>
+        <div class="contact-info">
+            <p>地址：陕西省西安市高新区西安软件园</p>
+            <p>电话：[具体电话号码]</p>
+            <p>邮箱：[具体邮箱地址]</p>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 科茂智电 版权所有</p>
+        <div class="social-media">
+            <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+            <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="images/linkedin.png" alt="LinkedIn"></a>
+        </div>
+    </footer>
+
+   <!-- 新增粒子库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 粒子效果初始化
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#4CAF50'
+                },
+                shape: {
+                    type: 'circle',
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#4CAF50',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+
+
+           <script>
+        // 暗黑模式切换
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.createElement('button');
+            themeToggle.textContent = '🌓 切换主题';
+            themeToggle.style.position = 'fixed';
+            themeToggle.style.top = '50px';
+            themeToggle.style.right = '20px';
+            themeToggle.style.padding = '10px 15px';
+            themeToggle.style.backgroundColor = '#4CAF50';
+            themeToggle.style.color = 'white';
+            themeToggle.style.border = 'none';
+            themeToggle.style.borderRadius = '25px';
+            themeToggle.style.cursor = 'pointer';
+            themeToggle.style.zIndex = '1000';
+            themeToggle.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                themeToggle.textContent = document.body.classList.contains('dark-theme') 
+                    ? '☀️ 浅色模式' 
+                    : '🌙 深色模式';
+            });
+            
+            document.body.appendChild(themeToggle);
+
+            // 表单验证
+            const contactForm = document.querySelector('#contact form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    
+                    const isValid = [...formData.entries()].every(([key, value]) => {
+                        if (key === 'email' && !value.includes('@')) return false;
+                        return value.trim() !== '';
+                    });
+
+                    if (!isValid) {
+                        this.querySelectorAll('input, textarea').forEach(input => {
+                            input.classList.toggle('error', 
+                                !input.value.trim() || 
+                                (input.name === 'email' && !input.value.includes('@'))
+                            );
+                        });
+                        return;
+                    }
+
+                    alert('提交成功！我们将尽快与您联系');
+                    this.reset();
+                    this.querySelectorAll('input, textarea').forEach(input => {
+                        input.classList.remove('error');
+                    });
+                });
+            }
+
+            // 返回顶部按钮
+            const backToTop = document.createElement('button');
+            backToTop.className = 'back-to-top';
+            backToTop.textContent = '↑';
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            document.body.appendChild(backToTop);
+
+            window.addEventListener('scroll', () => {
+                const btn = document.querySelector('.back-to-top');
+                btn.classList.toggle('active', window.scrollY > 500);
+            });
+        });
+    </script>
+</body>
+</html>
